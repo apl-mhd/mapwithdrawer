@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          toolbar = findViewById(R.id.toolbar);
+
+
+        toolbar.setTitle("");
+        toolbar.setSubtitle("");
+
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer);
