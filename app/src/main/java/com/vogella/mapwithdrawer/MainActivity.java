@@ -3,11 +3,13 @@ package com.vogella.mapwithdrawer;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,7 +29,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity  implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity  implements OnMapReadyCallback,
+        NavigationView.OnNavigationItemSelectedListener{
 
 
     DrawerLayout drawerLayout;
@@ -77,10 +80,10 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
         mapFragment.getMapAsync(this);
 
 
-
-
-
     }
+
+
+
 
 
     @Override
@@ -91,8 +94,13 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
         // Add a marker in Sydney, Australia, and move the camera.
         LatLng sydney = new LatLng(24.9663494, 89.2581543);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,15));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        LatLng aus = new LatLng(24.9623484, 89.2581543);
+        mMap.addMarker(new MarkerOptions().position(aus).title("aus"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(aus,15));
+
 
     }
 
@@ -105,7 +113,6 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
 
 
             startActivity(new Intent(MainActivity.this, CurrentLocation.class));
-
             Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
         }
 
